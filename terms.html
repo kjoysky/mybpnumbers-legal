@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The terms that govern the My BP Numbers app for iPhone, including the My BP Numbers Pro subscription.">
+<meta name="robots" content="index, follow">
+<title>My BP Numbers Terms</title>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600&display=swap">
+
+<style>
+  /* ---- Tokens. Warm-paper palette lifted from the app's own Theme.swift, so
+         this page and the report it describes are the same document. ---- */
+  :root {
+    --paper:      #FCF7F1;
+    --surface:    #F6ECDE;
+    --ink:        #1C1917;
+    --quiet:      #6B665F;
+    --navy:       #1E3A5F;
+    --navy-soft:  #41618A;
+    --brand:      #C6223D;
+    --rule:       #E0D6C7;
+    --hairline:   #EDE4D7;
+    --flag-bg:    #FBEEE9;
+    --flag-edge:  #E2C3B7;
+    --flag-ink:   #8A3A22;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #14120F;
+      --surface:   #1E1B16;
+      --ink:       #F1EAE0;
+      --quiet:     #A9A197;
+      --navy:      #8FB6E0;
+      --navy-soft: #6E93BC;
+      --brand:     #F0546E;
+      --rule:      #332E27;
+      --hairline:  #2A2620;
+      --flag-bg:   #261914;
+      --flag-edge: #4A332A;
+      --flag-ink:  #E8A88C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:     #14120F;
+    --surface:   #1E1B16;
+    --ink:       #F1EAE0;
+    --quiet:     #A9A197;
+    --navy:      #8FB6E0;
+    --navy-soft: #6E93BC;
+    --brand:     #F0546E;
+    --rule:      #332E27;
+    --hairline:  #2A2620;
+    --flag-bg:   #261914;
+    --flag-edge: #4A332A;
+    --flag-ink:  #E8A88C;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 47rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* ---- Letterhead. The app's printed report puts the name top left and what
+         the document is top right, over a navy rule. Same here. ---- */
+  .letterhead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 2px solid var(--navy);
+  }
+  .wordmark {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: clamp(1.5rem, 4vw, 1.9rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .wordmark .slash { color: var(--brand); }
+  .docname {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.75rem;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.85rem;
+    color: var(--quiet);
+  }
+  .meta b { color: var(--ink); font-weight: 600; }
+
+  .lede {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 2.25rem 0 0;
+    max-width: 36rem;
+  }
+  .lede + p { margin-top: 1rem; max-width: 36rem; color: var(--quiet); font-size: 0.97rem; }
+
+  /* ---- Sections. Serif numerals in the margin, navy and plain — the app sets
+         How to use's step numbers exactly that way: no circle, no fill. ---- */
+  .body-copy { margin-top: 3rem; }
+
+  section {
+    display: grid;
+    grid-template-columns: 2.75rem 1fr;
+    gap: 0 1.25rem;
+    padding-top: 2.25rem;
+    margin-top: 2.25rem;
+    border-top: 1px solid var(--hairline);
+  }
+  section:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+
+  .num {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--navy-soft);
+    line-height: 1.25;
+    font-variant-numeric: tabular-nums;
+  }
+  section > h2 {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  section > .content { grid-column: 2; }
+  section > .content > :first-child { margin-top: 0.75rem; }
+  section p { margin: 0.9rem 0 0; max-width: 36rem; }
+  section ul { margin: 0.9rem 0 0; padding-left: 1.1rem; max-width: 36rem; }
+  section li { margin-top: 0.3rem; }
+  section li::marker { color: var(--navy-soft); }
+  strong { font-weight: 600; }
+  a { color: var(--navy); text-underline-offset: 0.16em; }
+  a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 2px; }
+
+  .callout {
+    margin: 1.25rem 0 0;
+    padding: 0.9rem 1.1rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    max-width: 36rem;
+  }
+  .callout p { margin-top: 0; }
+  .callout p + p { margin-top: 0.7rem; }
+  .callout .label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+
+  /* One editorial device, used only for the notes addressed to Kristina. */
+  .flag {
+    margin: 1.25rem 0 0;
+    padding: 0.85rem 1.1rem;
+    background: var(--flag-bg);
+    border: 1px solid var(--flag-edge);
+    border-radius: 10px;
+    max-width: 36rem;
+    font-size: 0.9rem;
+    color: var(--flag-ink);
+  }
+  .flag p { margin: 0; max-width: none; color: inherit; }
+  .flag p + p { margin-top: 0.6rem; }
+  .flag .label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.1rem;
+    border-top: 2px solid var(--navy);
+    font-size: 0.85rem;
+    color: var(--quiet);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 34rem) {
+    body { font-size: 16px; }
+    .sheet { padding: 2rem 1.15rem 3.5rem; }
+    section { grid-template-columns: 1fr; gap: 0; }
+    section > h2 { display: flex; gap: 0.7rem; }
+    section > .content { grid-column: 1; }
+    .num { font-size: 1.2rem; }
+  }
+</style>
+
+<div class="sheet">
+
+  <header class="letterhead">
+    <p class="wordmark">My BP&nbsp;Numbers<span class="slash">.</span></p>
+    <span class="docname">Terms of Use</span>
+  </header>
+
+  <ul class="meta">
+    <li><b>Effective</b> August 24, 2026</li>
+    <li><b>Publisher</b> Kristina Nelson</li>
+    <li><b>Contact</b> kjoysky31@gmail.com</li>
+  </ul>
+
+  <p class="lede">
+    These Terms govern your use of the My BP Numbers app for iPhone. By downloading or using the
+    app, you agree to them.
+  </p>
+  <p>
+    My BP Numbers is made and operated by Kristina Nelson, an individual developer. Throughout these
+    Terms, “we” means Kristina Nelson and “the app” means My BP Numbers.
+  </p>
+
+  <div class="body-copy">
+
+    <section>
+      <span class="num">1</span>
+      <h2>What the app is for</h2>
+      <div class="content">
+        <p>
+          My BP Numbers is a personal record-keeping tool. It helps you write down, organise and
+          review measurements you have taken yourself, and print or share a report of them.
+        </p>
+        <p>The app records:</p>
+        <ul>
+          <li>Blood pressure</li>
+          <li>Pulse</li>
+          <li>Weight</li>
+          <li>Blood oxygen (SpO₂)</li>
+          <li>A note against any reading</li>
+        </ul>
+        <p>
+          It can also produce a PDF report and a spreadsheet of what you have recorded, for your own
+          records or to give to a doctor.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">2</span>
+      <h2>The app does not give medical advice</h2>
+      <div class="content">
+        <p>
+          My BP Numbers is for information and record-keeping only. It does not give medical advice,
+          make a diagnosis, recommend treatment, or provide emergency services.
+        </p>
+        <p>
+          <strong>It is not a medical device.</strong> It is not intended to diagnose, treat, cure or
+          prevent any disease or condition.
+        </p>
+        <p>
+          Nothing the app records, calculates, organises or prints is a substitute for advice from a
+          doctor or another qualified healthcare professional. Always speak to one about your health
+          and before making any medical decision.
+        </p>
+        <p>
+          <strong>Do not start, stop or change any medication, treatment or care</strong> based on
+          what you see in this app.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">3</span>
+      <h2>Medical emergencies</h2>
+      <div class="content">
+        <p>
+          The app is not designed to notice, identify or respond to a medical emergency. Do not use
+          it to decide whether you need urgent care.
+        </p>
+        <div class="callout">
+          <span class="label">If you feel unwell</span>
+          <p>
+            If you feel unwell, or think you are having a medical emergency, call 911 or seek
+            emergency care right away.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">4</span>
+      <h2>Who may use the app</h2>
+      <div class="content">
+        <p>
+          You must be at least 18 years old to agree to these Terms and to use My BP Numbers. If you
+          are setting the app up for a parent or another adult, you are responsible for making sure
+          they understand what it does and does not do.
+        </p>
+        <p>
+          You may not use the app on behalf of anyone who has not agreed to these Terms.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">5</span>
+      <h2>What you enter, and taking your own measurements</h2>
+      <div class="content">
+        <p>
+          You are responsible for what you enter. The app keeps the numbers you type; it does not
+          measure anything itself and does not check whether a reading is plausible or correct.
+        </p>
+        <p>
+          Mistyped entries, a faulty monitor, a cuff worn wrongly or any other error will produce a
+          record and a report that are wrong in the same way. <strong>Check anything important
+          before you rely on it or hand it to a healthcare professional.</strong>
+        </p>
+        <p>
+          Use your monitor, scale or oximeter according to its manufacturer’s instructions, and ask a
+          qualified healthcare professional about anything you are unsure of.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">6</span>
+      <h2>Reports you create and share</h2>
+      <div class="content">
+        <p>
+          The app can produce a PDF report and a spreadsheet from what you have recorded. You decide
+          whether to share them, how, and with whom.
+        </p>
+        <p>
+          A report is a tidy copy of what you entered. <strong>It is not an official medical
+          record</strong> and it does not replace the records your doctor or clinic keeps. Every page
+          says so.
+        </p>
+        <p>
+          Once you have shared a report, what happens to it is outside our control.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">7</span>
+      <h2>My BP Numbers Pro — subscription and billing</h2>
+      <div class="content">
+        <p>
+          Recording readings and printing a report are free, and stay free.
+          <strong>My BP Numbers Pro</strong> is an optional yearly subscription. It adds two
+          things:
+        </p>
+        <ul>
+          <li>
+            <strong>Reports for months or years.</strong> The free report covers up to ten days; Pro
+            covers any stretch of time you choose, up to your whole record.
+          </li>
+          <li>
+            <strong>Three daily reminders</strong> instead of one, at times you choose.
+          </li>
+        </ul>
+        <p>
+          Nothing you have already recorded is ever locked, on either tier.
+        </p>
+        <div class="callout">
+          <span class="label">Auto-renewing subscription</span>
+          <p>
+            <strong>My BP Numbers Pro is an annual subscription</strong> at the price shown in the
+            app, in your own currency. Payment is charged to your Apple&nbsp;ID when you confirm the
+            purchase.
+          </p>
+          <p>
+            <strong>It renews automatically</strong> unless you turn off auto-renewal at least 24
+            hours before the end of the current period. Apple charges the renewal within the 24 hours
+            before each period ends.
+          </p>
+          <p>
+            <strong>You can manage or cancel it at any time</strong> in Settings on your iPhone,
+            under your Apple&nbsp;ID → Subscriptions. Cancelling stops the next renewal; it does not
+            end the period you have already paid for.
+          </p>
+          <p>
+            Purchases and refunds are handled by Apple, not by us, under the App&nbsp;Store terms in
+            force at the time.
+          </p>
+        </div>
+        <p>
+          If a subscription lapses, everything you have recorded stays exactly where it is. Only the
+          Pro features stop.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">8</span>
+      <h2>Your data, iCloud, and backups</h2>
+      <div class="content">
+        <p>
+          What you record is stored on your iPhone and in <strong>your own private iCloud
+          account</strong>, so it survives a lost or replaced phone. There is no account to create,
+          no sign-up and no advertising, and your readings are not sent to us.
+        </p>
+        <p>
+          Because the store is your own iCloud, <strong>deleting the app does not delete your
+          readings</strong>. To erase everything, use Settings → Delete everything inside the app.
+        </p>
+        <p>
+          The app can also save a copy of your readings as a spreadsheet at any time. We recommend
+          keeping your own copy of anything you would not want to lose.
+        </p>
+        <p>
+          How information is handled is described in full in the
+          <a href="https://kjoysky.github.io/mybpnumbers-legal/privacy.html">My BP Numbers Privacy Policy</a>.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">9</span>
+      <h2>Availability, and no guarantee of accuracy</h2>
+      <div class="content">
+        <p>
+          We work to keep My BP Numbers reliable, but it is provided <strong>“as is” and “as
+          available”</strong>. To the extent the law allows, we do not guarantee that it will always
+          be available, uninterrupted, error-free, or free from data loss.
+        </p>
+        <p>
+          Features may be added, changed or removed over time.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">10</span>
+      <h2>Limitation of liability</h2>
+      <div class="content">
+        <p>
+          To the fullest extent the law allows, Kristina Nelson is not liable for any damage, injury,
+          loss, medical or treatment decision, data loss or other consequence arising from or
+          relating to your use of the app, the information you entered into it, the reports it
+          produced, the equipment you measured with, or any period during which the app was
+          unavailable.
+        </p>
+        <p>
+          <strong>Nothing in these Terms excludes or limits liability where the law does not permit
+          it</strong> — including liability for death or personal injury caused by negligence, or for
+          fraud.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">11</span>
+      <h2>Acceptable use</h2>
+      <div class="content">
+        <p>
+          Please do not misuse the app: do not interfere with how it works or with its security, do
+          not reverse engineer it except where the law expressly allows, and do not use it for any
+          unlawful purpose.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">12</span>
+      <h2>Intellectual property</h2>
+      <div class="content">
+        <p>
+          My BP Numbers — its design, software, artwork, text and other original content — belongs to
+          Kristina Nelson or is used under licence, and is protected by intellectual property law.
+        </p>
+        <p>
+          These Terms give you permission to use the app for your own personal purposes. They do not
+          give you ownership of it or of anything in it. <strong>What you record is yours.</strong>
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">13</span>
+      <h2>Changes to these Terms</h2>
+      <div class="content">
+        <p>
+          These Terms may be updated when there is a reason to. The effective date at the top shows
+          when they were last changed. If you keep using the app after an update, you accept the
+          revised Terms so far as the law allows.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">14</span>
+      <h2>If you downloaded the app from Apple’s App Store</h2>
+      <div class="content">
+        <p>
+          These Terms are between you and Kristina Nelson. <strong>Apple is not a party to
+          them</strong>, and Kristina Nelson alone is responsible for My BP Numbers and its content.
+        </p>
+        <ul>
+          <li>
+            Your licence to use the app is non-transferable, and limited to Apple-branded devices you
+            own or control, under the Usage Rules in the App Store Terms of Service.
+          </li>
+          <li>
+            <strong>Apple has no obligation to provide maintenance or support</strong> for the app.
+          </li>
+          <li>
+            If the app fails to conform to any applicable warranty, you may tell Apple, and Apple may
+            refund the purchase price. To the maximum extent the law allows, Apple has no other
+            warranty obligation of any kind.
+          </li>
+          <li>
+            <strong>Kristina Nelson, not Apple, is responsible</strong> for any claim about the app —
+            including product liability, any failure to meet a legal or regulatory requirement, and
+            consumer protection claims.
+          </li>
+          <li>
+            Kristina Nelson, not Apple, is responsible for investigating and resolving any claim that
+            the app infringes someone’s intellectual property.
+          </li>
+          <li>
+            You confirm you are not in a country subject to a U.S. Government embargo, and are not on
+            any U.S. Government list of prohibited or restricted parties.
+          </li>
+          <li>
+            <strong>Apple and its subsidiaries are third-party beneficiaries of these Terms</strong>
+            and may enforce them against you.
+          </li>
+        </ul>
+        <p>Your use of the app must also follow the App Store’s own terms.</p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">15</span>
+      <h2>Governing law, and the rest of the small print</h2>
+      <div class="content">
+        <p>
+          These Terms are governed by the laws of the State of Minnesota, United States, without regard
+          to its conflict-of-law rules. Nothing here takes away a consumer protection you have where
+          you live.
+        </p>
+        <p>
+          If any part of these Terms is found unenforceable, the rest stays in force. Together with
+          the Privacy Policy, these Terms are the whole agreement between you and Kristina Nelson
+          about the app.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">16</span>
+      <h2>Contact</h2>
+      <div class="content">
+        <p>Questions about these Terms:</p>
+        <p>
+          <strong>Kristina Nelson</strong><br>
+          <a href="mailto:kjoysky31@gmail.com">kjoysky31@gmail.com</a>
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <span>My BP Numbers · Terms of Use · Effective August 24, 2026</span>
+    <span>Kristina Nelson · Minnesota, USA</span>
+  </footer>
+
+</div>
+</body>
+</html>

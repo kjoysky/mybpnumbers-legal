@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How My BP Numbers handles what you record: on your iPhone and in your own private iCloud, seen by nobody else, with nothing collected about you.">
+<meta name="robots" content="index, follow">
+<title>My BP Numbers Privacy</title>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600&display=swap">
+
+<style>
+  /* ---- Tokens. Identical to Terms-of-Use.html, deliberately: the two documents
+         are one family and a second palette is a second thing to keep in step.
+         Warm-paper values lifted from the app's own Theme.swift. ---- */
+  :root {
+    --paper:      #FCF7F1;
+    --surface:    #F6ECDE;
+    --ink:        #1C1917;
+    --quiet:      #6B665F;
+    --navy:       #1E3A5F;
+    --navy-soft:  #41618A;
+    --brand:      #C6223D;
+    --rule:       #E0D6C7;
+    --hairline:   #EDE4D7;
+    --flag-bg:    #FBEEE9;
+    --flag-edge:  #E2C3B7;
+    --flag-ink:   #8A3A22;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #14120F;
+      --surface:   #1E1B16;
+      --ink:       #F1EAE0;
+      --quiet:     #A9A197;
+      --navy:      #8FB6E0;
+      --navy-soft: #6E93BC;
+      --brand:     #F0546E;
+      --rule:      #332E27;
+      --hairline:  #2A2620;
+      --flag-bg:   #261914;
+      --flag-edge: #4A332A;
+      --flag-ink:  #E8A88C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:     #14120F;
+    --surface:   #1E1B16;
+    --ink:       #F1EAE0;
+    --quiet:     #A9A197;
+    --navy:      #8FB6E0;
+    --navy-soft: #6E93BC;
+    --brand:     #F0546E;
+    --rule:      #332E27;
+    --hairline:  #2A2620;
+    --flag-bg:   #261914;
+    --flag-edge: #4A332A;
+    --flag-ink:  #E8A88C;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 47rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* ---- Letterhead. The app's printed report puts the name top left and what
+         the document is top right, over a navy rule. Same here. ---- */
+  .letterhead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 2px solid var(--navy);
+  }
+  .wordmark {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: clamp(1.5rem, 4vw, 1.9rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .wordmark .slash { color: var(--brand); }
+  .docname {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.75rem;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.85rem;
+    color: var(--quiet);
+  }
+  .meta b { color: var(--ink); font-weight: 600; }
+
+  .lede {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 2.25rem 0 0;
+    max-width: 36rem;
+  }
+  .lede + p { margin-top: 1rem; max-width: 36rem; color: var(--quiet); font-size: 0.97rem; }
+
+  /* ---- Sections. Serif numerals in the margin, navy and plain — the app sets
+         How to use's step numbers exactly that way: no circle, no fill. ---- */
+  .body-copy { margin-top: 3rem; }
+
+  section {
+    display: grid;
+    grid-template-columns: 2.75rem 1fr;
+    gap: 0 1.25rem;
+    padding-top: 2.25rem;
+    margin-top: 2.25rem;
+    border-top: 1px solid var(--hairline);
+  }
+  section:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+
+  .num {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--navy-soft);
+    line-height: 1.25;
+    font-variant-numeric: tabular-nums;
+  }
+  section > h2 {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  section > .content { grid-column: 2; }
+  section > .content > :first-child { margin-top: 0.75rem; }
+  section p { margin: 0.9rem 0 0; max-width: 36rem; }
+  section ul { margin: 0.9rem 0 0; padding-left: 1.1rem; max-width: 36rem; }
+  section li { margin-top: 0.3rem; }
+  section li::marker { color: var(--navy-soft); }
+  strong { font-weight: 600; }
+  a { color: var(--navy); text-underline-offset: 0.16em; }
+  a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 2px; }
+
+  .callout {
+    margin: 1.25rem 0 0;
+    padding: 0.9rem 1.1rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    max-width: 36rem;
+  }
+  .callout p { margin-top: 0; }
+  .callout p + p { margin-top: 0.7rem; }
+  .callout .label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+
+  /* The one callout that is not inside a section: the summary under the lede.
+     `section p` does not reach it, so its paragraphs keep the browser's own
+     bottom margin — killed here rather than by editing the shared rule. */
+  .summary { margin-top: 1.75rem; }
+  .summary p { margin-bottom: 0; max-width: 36rem; }
+
+  /* Closing note, above the footer rule — a pointer, not a section. */
+  .closing {
+    margin: 3.5rem 0 0;
+    padding-top: 2.25rem;
+    border-top: 1px solid var(--hairline);
+    max-width: 36rem;
+    font-size: 0.95rem;
+    color: var(--quiet);
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.1rem;
+    border-top: 2px solid var(--navy);
+    font-size: 0.85rem;
+    color: var(--quiet);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 34rem) {
+    body { font-size: 16px; }
+    .sheet { padding: 2rem 1.15rem 3.5rem; }
+    section { grid-template-columns: 1fr; gap: 0; }
+    section > h2 { display: flex; gap: 0.7rem; }
+    section > .content { grid-column: 1; }
+    .num { font-size: 1.2rem; }
+  }
+</style>
+
+<div class="sheet">
+
+  <header class="letterhead">
+    <p class="wordmark">My BP&nbsp;Numbers<span class="slash">.</span></p>
+    <span class="docname">Privacy Policy</span>
+  </header>
+
+  <ul class="meta">
+    <li><b>Effective</b> August 24, 2026</li>
+    <li><b>Publisher</b> Kristina Nelson</li>
+    <li><b>Contact</b> kjoysky31@gmail.com</li>
+  </ul>
+
+  <p class="lede">
+    This policy explains what My BP Numbers does with the information you put into it.
+  </p>
+  <p>
+    My BP Numbers is made and operated by Kristina Nelson, an individual developer. Throughout this
+    policy, “I” means Kristina Nelson and “the app” means My BP Numbers.
+  </p>
+
+  <div class="callout summary">
+    <span class="label">In short</span>
+    <p>
+      Your readings stay on your iPhone and in <strong>your own private iCloud account</strong>.
+      There is no account to create, no sign-up, no advertising, and no server of mine anywhere.
+    </p>
+    <p>
+      <strong>I never see what you record.</strong> There is nowhere for it to reach me.
+    </p>
+    <p>
+      Nothing is collected about you: no analytics, no tracking, and no third-party code reporting
+      back.
+    </p>
+  </div>
+
+  <div class="body-copy">
+
+    <section>
+      <span class="num">1</span>
+      <h2>What you put into the app</h2>
+      <div class="content">
+        <p>
+          Everything in My BP Numbers is typed in by you. The app measures nothing itself.
+        </p>
+        <ul>
+          <li>
+            <strong>Readings</strong> — blood pressure, pulse, weight, blood oxygen (SpO₂), and the
+            date and time each was taken
+          </li>
+          <li><strong>A note</strong> against any reading, in your own words</li>
+          <li>
+            <strong>Your name</strong>, if you enter one. It appears at the top of the app’s screens
+            and on every page of a report you print
+          </li>
+          <li>
+            <strong>Your medications</strong> — names, doses, how often you take them, and, if you
+            choose, a photograph of the bottle
+          </li>
+          <li>
+            <strong>Your settings</strong> — colour theme, text size, which vitals to record,
+            reminder times, and pounds or kilograms
+          </li>
+        </ul>
+        <p>
+          That is the whole list. The app asks for no address, no date of birth, no phone number, no
+          doctor’s details and no email address.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">2</span>
+      <h2>Where it is kept, and who can see it</h2>
+      <div class="content">
+        <p>
+          What you record is stored <strong>on your iPhone and in your own private iCloud
+          account</strong>. That is your iCloud, not mine. It is what lets a year of readings survive
+          a phone that is lost, broken or replaced.
+        </p>
+        <p>
+          <strong>I never see any of it.</strong> I do not run a server, there is no account, and
+          nothing you record is sent to me. Your readings, your name, your medications and your
+          photographs never reach me, because there is nowhere for them to go.
+        </p>
+        <p>
+          Apple carries the sync between your iPhone and your iCloud as part of the iCloud service
+          you already have. What Apple does with iCloud is covered by
+          <a href="https://www.apple.com/legal/privacy/">Apple’s own privacy policy</a>.
+        </p>
+        <p>
+          Because the store is your own iCloud, <strong>deleting the app does not delete your
+          readings</strong> — see section 8.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">3</span>
+      <h2>What is not collected</h2>
+      <div class="content">
+        <ul>
+          <li>
+            <strong>No analytics and no usage tracking.</strong> I do not know how many readings you
+            have taken, which screens you visit, or whether you opened the app today.
+          </li>
+          <li>
+            <strong>No crash reporting of my own</strong>, and no advertising identifier.
+          </li>
+          <li>
+            <strong>No third-party software</strong> that gathers anything. The app contains no
+            advertising network, no analytics library and no tracker.
+          </li>
+          <li>
+            <strong>Nothing is sold or shared.</strong> Your health information is not used for
+            advertising, is not sold, and is not given to advertisers or data brokers. There is
+            nothing for me to sell, because I hold nothing.
+          </li>
+        </ul>
+        <p>
+          This is why the app’s App Store listing reports <strong>Data Not Collected</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">4</span>
+      <h2>The camera and the bottle photo</h2>
+      <div class="content">
+        <p>
+          You can add a photograph of a medication bottle, which is useful when a label is hard to
+          read. It is entirely optional.
+        </p>
+        <p>
+          The camera is used <strong>only</strong> when you tap <em>Take a photo</em> on a medication
+          screen, and iOS asks your permission the first time. You can also choose an existing
+          picture from your photo library instead.
+        </p>
+        <p>
+          The photograph is stored with that medication, in the same private store as everything
+          else, and syncs the same way. It is <strong>not printed on your report</strong>, and it is
+          not sent anywhere. A photograph taken inside the app is not added to your camera roll, so
+          removing it from a medication removes the only copy.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">5</span>
+      <h2>Reminders</h2>
+      <div class="content">
+        <p>
+          The daily reminders are <strong>local notifications</strong>, scheduled by the app on your
+          own iPhone. Nothing is sent to a server, and no server sends anything to you. iOS asks your
+          permission before the first one is scheduled.
+        </p>
+        <p>
+          You can turn them off at any time in the app, under Settings → Daily reminders, or in iOS
+          Settings.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">6</span>
+      <h2>My BP Numbers Pro</h2>
+      <div class="content">
+        <p>
+          My BP Numbers Pro is an optional yearly subscription, and <strong>Apple handles the
+          purchase, not me</strong>.
+        </p>
+        <p>
+          I do not receive your name, your payment details, your card, your billing address or your
+          Apple&nbsp;ID. The app asks Apple one question — <em>does this Apple account have a current
+          subscription?</em> — and gets back yes or no. Nothing about the subscription is stored by
+          the app.
+        </p>
+        <p>
+          What Apple does with a purchase is covered by Apple’s own privacy policy and the
+          App&nbsp;Store terms.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">7</span>
+      <h2>Reports and spreadsheets you share</h2>
+      <div class="content">
+        <p>
+          The app can produce a PDF report and a spreadsheet from what you have recorded.
+          <strong>You decide</strong> whether to save, print, email, message, AirDrop or otherwise
+          send them, and to whom.
+        </p>
+        <p>
+          The moment one leaves the app it is out of my reach and out of yours. Whoever handles it
+          next — Apple, an email provider, a printer, a clinic, a cloud drive, a family member —
+          handles it under their own rules, not this policy.
+        </p>
+        <p>
+          A report carries your name on every page, deliberately, because printed pages get separated
+          and stapled wrong. Treat it as you would any other medical paperwork.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">8</span>
+      <h2>Deleting your information</h2>
+      <div class="content">
+        <p>You control all of it, and you do not need to ask me.</p>
+        <ul>
+          <li>
+            <strong>One reading</strong> — open it from History and tap <em>Delete this reading</em>.
+            That removes everything recorded with it, including its note.
+          </li>
+          <li>
+            <strong>Everything</strong> — Settings → <strong>Delete everything</strong>. This removes
+            every reading, note and medication from this iPhone <strong>and from your iCloud
+            backup</strong>. It cannot be undone.
+          </li>
+        </ul>
+        <div class="callout">
+          <span class="label">Deleting the app is not the same thing</span>
+          <p>
+            Deleting the app removes the copy on that iPhone; your record stays in your own iCloud,
+            and reinstalling the app brings it back. That is deliberate — it is what protects
+            somebody who drops a phone in a sink.
+          </p>
+          <p>
+            <strong>If you want the record erased, use Delete everything inside the app first.</strong>
+          </p>
+        </div>
+        <p>
+          Copies you have already exported or shared are outside the app, and neither of us can reach
+          them.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">9</span>
+      <h2>Security</h2>
+      <div class="content">
+        <p>
+          Your record is protected by your iPhone’s own security: your passcode, Face&nbsp;ID or
+          Touch&nbsp;ID, and the encryption iOS and iCloud provide. <strong>Keeping those turned on
+          is the thing that matters most</strong>, because they are what stands between your record
+          and somebody holding your phone.
+        </p>
+        <p>
+          There is no password to this app and no account of yours for anyone to break into, because
+          there is no account.
+        </p>
+        <p>
+          No device or storage system can be promised to be perfectly secure, and I do not promise
+          it.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">10</span>
+      <h2>Your rights, wherever you live</h2>
+      <div class="content">
+        <p>
+          Privacy laws — including the California Consumer Privacy Act, the UK and EU General Data
+          Protection Regulation, and others like them — give you the right to see the personal
+          information a company holds about you, to correct it, to take a copy of it, and to have it
+          deleted.
+        </p>
+        <p>
+          <strong>You already have every one of those rights, immediately, without asking
+          anyone</strong>, because the information is on your own device and in your own iCloud:
+        </p>
+        <ul>
+          <li><strong>See it</strong> — it is all in the app</li>
+          <li><strong>Correct it</strong> — open any reading and edit it</li>
+          <li>
+            <strong>Take a copy</strong> — Settings → Save a copy makes a spreadsheet of everything
+          </li>
+          <li><strong>Delete it</strong> — Settings → Delete everything</li>
+        </ul>
+        <p>
+          I hold no copy of your information, so there is nothing for me to send you, correct or
+          erase on request. There is also nothing to sell, so there is no sale to opt out of.
+        </p>
+        <p>
+          HIPAA governs healthcare providers and the companies that work for them. I am neither, and
+          this app is not a clinic’s records system — which is another way of saying that nobody but
+          you has what is in it.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">11</span>
+      <h2>Children</h2>
+      <div class="content">
+        <p>
+          My BP Numbers is not directed at children. The Terms of Use require you to be at least 18
+          to use the app.
+        </p>
+        <p>
+          I do not knowingly collect personal information from children — or from anybody else —
+          because, as section 3 says, nothing is collected at all.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">12</span>
+      <h2>Changes to this policy</h2>
+      <div class="content">
+        <p>
+          This policy may be updated when there is a reason to, such as a change to the app or to the
+          law. The effective date at the top shows when it was last changed. If a change ever means
+          information starts being collected, <strong>this policy will say so plainly before it
+          happens</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <span class="num">13</span>
+      <h2>Contact</h2>
+      <div class="content">
+        <p>Questions about this policy, or about privacy in My BP Numbers:</p>
+        <p>
+          <strong>Kristina Nelson</strong><br>
+          <a href="mailto:kjoysky31@gmail.com">kjoysky31@gmail.com</a>
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <p class="closing">
+    This policy is about <strong>information</strong>. What the app does and does not do medically —
+    that it keeps a record and never judges a reading, and what to do in an emergency — is in the
+    <a href="https://kjoysky.github.io/mybpnumbers-legal/terms.html">Terms of
+    Use</a>, sections 2 and 3.
+  </p>
+
+  <footer>
+    <span>My BP Numbers · Privacy Policy · Effective August 24, 2026</span>
+    <span>Kristina Nelson · Minnesota, USA</span>
+  </footer>
+
+</div>
+</body>
+</html>
