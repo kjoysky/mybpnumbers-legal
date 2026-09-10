@@ -1,6 +1,6 @@
-# My BP Numbers — legal pages
+# Blood Pressure Log & Report — legal pages
 
-The Privacy Policy and Terms of Use for the **My BP Numbers** iPhone app, served
+The Privacy Policy and Terms of Use for the **Blood Pressure Log & Report** iPhone app, served
 at <https://kjoysky.github.io/mybpnumbers-legal/>.
 
 - [Privacy Policy](https://kjoysky.github.io/mybpnumbers-legal/privacy.html)
